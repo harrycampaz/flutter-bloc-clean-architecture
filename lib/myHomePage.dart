@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterleanarquitecture/user/bloc/bloc_user.dart';
+import 'package:flutterleanarquitecture/user/ui/widgets/adapter/userList.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -36,19 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
 
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
+        child: UserList()
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
