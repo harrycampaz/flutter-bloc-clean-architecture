@@ -8,11 +8,13 @@ class DataApi {
   }
 
   List<UserItem> buildUsers(List<User> users) {
-    return users.map((user) => UserItem(user: user, onPressedFabIcon: onPressUser(user))).toList();
+    return users.map((user) => UserItem(user: user, onPressed: () {
+      onPressUser(user);
+    })).toList();
   }
 
-  onPressUser (User user){
-    print(user.toString());
+  onPressUser (User user) {
+    print(user.email);
   }
 
 }

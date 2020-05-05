@@ -1,36 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutterleanarquitecture/user/bloc/bloc_user.dart';
+import 'package:flutterleanarquitecture/post/bloc/bloc_post.dart';
+import 'package:flutterleanarquitecture/post/ui/widgets/adapter/postAdapter.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
-class UserList extends StatefulWidget {
+
+class PostsList extends StatefulWidget {
   @override
-  _UserListState createState() => _UserListState();
+  _PostsListState createState() => _PostsListState();
 }
 
-class _UserListState extends State<UserList> {
+class _PostsListState extends State<PostsList> {
 
-  UserBloc userBloc;
-
-
+  BlocPost postBloc;
 
   @override
   Widget build(BuildContext context) {
 
-    userBloc = BlocProvider.of<UserBloc>(context);
+    postBloc = BlocProvider.of<BlocPost>(context);
 
     return Container(
       child: StreamBuilder(
-        stream: userBloc.userRemoteAll,
+        stream: postBloc.postAll,
         builder: (BuildContext context, AsyncSnapshot snapshot){
           switch(snapshot.connectionState){
+
             case ConnectionState.none:
               return CircularProgressIndicator();
             case ConnectionState.waiting:
               return CircularProgressIndicator();
+
             case ConnectionState.active:
-              return ListView(children: userBloc.buildUsers(snapshot.data));
+              return PostAdapter(posts: snapshot.data);
+
             case ConnectionState.done:
-              return ListView(children: userBloc.buildUsers(snapshot.data));
+              return PostAdapter(posts: snapshot.data);
+
             default:
               return null;
           }

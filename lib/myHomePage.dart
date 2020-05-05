@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterleanarquitecture/post/ui/screen/postsScreen.dart';
 import 'package:flutterleanarquitecture/user/bloc/bloc_user.dart';
 import 'package:flutterleanarquitecture/user/ui/widgets/adapter/userList.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
@@ -18,11 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
   UserBloc userBloc;
 
   void _incrementCounter() {
-
-    userBloc.userAll.first.then((onVavue) {
-      onVavue.forEach((f) => print(f.name));
-    });
-
+    Navigator.push(context, MaterialPageRoute(builder: (context) => PostsScreen()));
   }
 
   @override

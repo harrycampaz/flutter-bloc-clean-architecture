@@ -6,22 +6,20 @@ import 'package:flutterleanarquitecture/user/model/user.dart';
 class UserItem extends StatelessWidget {
 
   final User user;
-  final VoidCallback onPressedFabIcon;
+  final VoidCallback onPressed;
 
 
-  UserItem({Key key, @required this.user, @required this.onPressedFabIcon}) : super(key: key);
+  UserItem({Key key, @required this.user, @required this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Card(
-        elevation: 2,
-        margin: EdgeInsets.all(4),
-        child: Column(children: <Widget>[
-          Text(user.name),
-          Text(user.email)
-        ],),
-      ),
+      child: ListTile(
+        title: Text(user.name),
+        leading: Icon(Icons.person),
+        subtitle: Text(user.email),
+        onTap: onPressed,
+      )
     );
   }
 }
